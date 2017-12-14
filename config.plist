@@ -375,15 +375,11 @@
 	<dict>
 		<key>ProductName</key>
 		<string>MacBookAir6,2</string>
-		<key>Trust</key>
-		<true/>
 	</dict>
 	<key>SystemParameters</key>
 	<dict>
 		<key>InjectKexts</key>
 		<string>Detect</string>
-		<key>InjectSystemID</key>
-		<true/>
 	</dict>
 </dict>
 </plist>
