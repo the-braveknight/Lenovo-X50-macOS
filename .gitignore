@@ -1,0 +1,5 @@
+.DS_Store
+AppleHDA*
+Build/*
+Downloads/*
+macos-tools/*
