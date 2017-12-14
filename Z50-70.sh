@@ -54,7 +54,6 @@ function installACPI() {
 }
 
 if [[ ! -d macos-tools ]]; then
-    echo "macos-tools not downloaded."
     downloadTools
 fi
 
