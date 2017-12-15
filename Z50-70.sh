@@ -46,11 +46,11 @@ function updateConfig() {
 }
 
 function compileACPI() {
-    macos-tools/make_acpi.sh Hotpatch
+    macos-tools/compile_acpi.sh Hotpatch/*.dsl
 }
 
 function installACPI() {
-    macos-tools/install_acpi.sh
+    macos-tools/install_acpi.sh Build/*.aml
 }
 
 if [[ ! -d macos-tools ]]; then
