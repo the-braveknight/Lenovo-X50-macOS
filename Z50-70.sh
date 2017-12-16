@@ -2,12 +2,14 @@
 
 hda_resources=Resources_CX20751
 
+EFI=$(macos-tools/mount_efi.sh)
+
 function downloadTools() {
     echo "Downloading macos-tools..."
     rm -Rf macos-tools && git clone https://github.com/the-braveknight/macos-tools --quiet
 }
 
-function downloadKexts() {
+function downloadRequirements() {
     macos-tools/download.sh settings.plist
 }
 
@@ -47,10 +49,16 @@ function updateConfig() {
 
 function compileACPI() {
     rm -f Build/*.aml
-    macos-tools/compile_acpi.sh Hotpatch/SSDT-Z50.dsl Downloads/Hotpatch/*.dsl
+    macos-tools/compile_acpi.sh Downloads/Hotpatch/*.dsl
+    if [[ "$1" == "-g50" ]]; then
+        macos-tools/compile_acpi.sh Hotpatch/SSDT-G50.dsl
+    else
+        macos-tools/compile_acpi.sh Hotpatch/SSDT-Z50.dsl
+    fi
 }
 
 function installACPI() {
+    rm -f $EFI/EFI/Clover/ACPI/patched/*.aml
     macos-tools/install_acpi.sh Build/*.aml
 }
 
@@ -62,8 +70,8 @@ case "$1" in
     --download-tools)
         downloadTools
         ;;
-    --download-kexts)
-        downloadKexts
+    --download-requirements)
+        downloadRequirements
         ;;
     --install-kexts)
         installKexts
@@ -75,7 +83,7 @@ case "$1" in
         updateConfig
         ;;
     --compile-acpi)
-        compileACPI
+        compileACPI "$2"
         ;;
     --install-acpi)
         installACPI
