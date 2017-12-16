@@ -1,8 +1,7 @@
 // Battery patches
 
-DefinitionBlock ("", "SSDT", 2, "hack", "BATT", 0)
-{
-    
+//DefinitionBlock ("", "SSDT", 2, "hack", "Z50-BAT", 0)
+//{
     External(_SB.PCI0.LPCB.EC, DeviceObj)
     Scope (_SB.PCI0.LPCB.EC)
     {
@@ -424,5 +423,5 @@ DefinitionBlock ("", "SSDT", 2, "hack", "BATT", 0)
         }
         Method (\B1B2, 2, NotSerialized) { Return(Or(Arg0, ShiftLeft(Arg1, 8))) }
     }
-}
+//}
 //EOF

@@ -1,7 +1,7 @@
 // Keyboard configuration
 
-DefinitionBlock("", "SSDT", 2, "hack", "PS2K", 0)
-{   
+//DefinitionBlock("", "SSDT", 2, "hack", "PS2K", 0)
+//{   
     // Enabling brightness keys
     External(_SB.PCI0.LPCB.EC, DeviceObj)
     Scope(_SB.PCI0.LPCB.EC) // brightness buttons
@@ -19,5 +19,5 @@ DefinitionBlock("", "SSDT", 2, "hack", "PS2K", 0)
             Notify (PS2K, 0x10) // For ApplePS2SmartTouchPad.kext (by EMlyDinEsH)
         }
     }
-}
+//}
 //EOF

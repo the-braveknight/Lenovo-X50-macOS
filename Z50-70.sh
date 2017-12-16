@@ -46,7 +46,7 @@ function updateConfig() {
 }
 
 function compileACPI() {
-    macos-tools/compile_acpi.sh Hotpatch/*.dsl
+    macos-tools/compile_acpi.sh Hotpatch/SSDT-Z50.dsl Downloads/Hotpatch/*.dsl
 }
 
 function installACPI() {

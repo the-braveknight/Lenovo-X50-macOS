@@ -1,7 +1,7 @@
 // SSDT-NVDA: Disable nVidia
 
-DefinitionBlock ("", "SSDT", 2, "hack", "DGPU", 0)
-{
+//DefinitionBlock ("", "SSDT", 2, "hack", "Z50-DGPU", 0)
+//{
     External(_SB.PCI0, DeviceObj)
     Scope(_SB.PCI0)
     {
@@ -60,7 +60,7 @@ DefinitionBlock ("", "SSDT", 2, "hack", "DGPU", 0)
         }
     }
     
-    Device(RMD2)
+    Device(RMD1)
     {
         Name(_HID, "RMD20000")
         Method(_INI)
@@ -68,5 +68,5 @@ DefinitionBlock ("", "SSDT", 2, "hack", "DGPU", 0)
             If (CondRefOf(\_SB.PCI0.RP05.PEGP._OFF)) { \_SB.PCI0.RP05.PEGP._OFF() }
         }
     }
-}
+//}
 //EOF
