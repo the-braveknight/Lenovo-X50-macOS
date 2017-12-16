@@ -18,8 +18,7 @@ function installPS2Kext() {
 }
 
 function installHDAInjector() {
-    # Create XML/Layout files injector; PinConfigs are injected with CodecCommander.kext & SSDT-HDEF
-    macos-tools/create_xmlinjector.sh Resources_CX20751
+    macos-tools/create_hdainjector.sh Resources_CX20751
     macos-tools/install_kext.sh AppleHDAInjector.kext
 }
 
