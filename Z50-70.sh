@@ -46,6 +46,7 @@ function updateConfig() {
 }
 
 function compileACPI() {
+    rm -f Build/*.aml
     macos-tools/compile_acpi.sh Hotpatch/SSDT-Z50.dsl Downloads/Hotpatch/*.dsl
 }
 

@@ -17,16 +17,6 @@
 				<string>RehabMan</string>
 				<key>name</key>
 				<string>os-x-realtek-network</string>
-				<key>Minimum OS</key>
-				<integer>9</integer>
-			</dict>
-			<dict>
-				<key>author</key>
-				<string>RehabMan</string>
-				<key>name</key>
-				<string>os-x-realtek-network RehabMan-Realtek-Network-2014</string>
-				<key>Maximum OS</key>
-				<integer>8</integer>
 			</dict>
 			<dict>
 				<key>author</key>

@@ -17,6 +17,14 @@
 			<array>
 				<dict>
 					<key>Comment</key>
+					<string>change EHC1 to EH01</string>
+					<key>Find</key>
+					<data>RUhDMQ==</data>
+					<key>Replace</key>
+					<data>RUgwMQ==</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
 					<string>change _OSI to XOSI</string>
 					<key>Find</key>
 					<data>X09TSQ==</data>
