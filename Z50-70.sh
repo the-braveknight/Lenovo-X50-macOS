@@ -42,22 +42,6 @@ function updateConfig() {
     macos-tools/update_config.sh config.plist
 }
 
-function compileACPI() {
-    rm -f Build/*.aml
-    macos-tools/compile_acpi.sh Downloads/Hotpatch/*.dsl
-    if [[ "$1" == "-g50" ]]; then
-        macos-tools/compile_acpi.sh Hotpatch/SSDT-G50.dsl
-    else
-        macos-tools/compile_acpi.sh Hotpatch/SSDT-Z50.dsl
-    fi
-}
-
-function installACPI() {
-    EFI=$(macos-tools/mount_efi.sh)
-    rm -f $EFI/EFI/Clover/ACPI/patched/*.aml
-    macos-tools/install_acpi.sh Build/*.aml
-}
-
 case "$1" in
     --download-tools)
         downloadTools
@@ -80,12 +64,6 @@ case "$1" in
                 ;;
             --update-config)
                 updateConfig
-                ;;
-            --compile-acpi)
-                compileACPI "$2"
-                ;;
-            --install-acpi)
-                installACPI
                 ;;
         esac
 esac
