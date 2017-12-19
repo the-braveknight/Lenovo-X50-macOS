@@ -178,7 +178,7 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>-ath9565</string>
+		<string>dart=0 -ath9565</string>
 		<key>Secure</key>
 		<false/>
 		<key>Timeout</key>
@@ -191,7 +191,7 @@
 	</dict>
 	<key>Devices</key>
 	<dict>
-		<key>FakeID</key>
+		<key>#FakeID</key>
 		<dict>
 			<key>IntelGFX</key>
 			<string>0x04128086</string>
