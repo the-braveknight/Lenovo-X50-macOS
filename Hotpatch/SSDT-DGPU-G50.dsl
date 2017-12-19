@@ -58,8 +58,8 @@
             }
         }
         
-        External(LPCB.EC0, DeviceObj)
-        Scope(LPCB.EC0)
+        External(LPCB.EC, DeviceObj)
+        Scope(LPCB.EC)
         {
             OperationRegion(ECR3, EmbeddedControl, 0x00, 0xFF)
             
