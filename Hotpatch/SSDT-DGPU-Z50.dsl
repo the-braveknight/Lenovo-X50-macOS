@@ -1,7 +1,7 @@
-// SSDT-NVDA: Disable nVidia
+// For disabling the discrete GPU
 
-//DefinitionBlock ("", "SSDT", 2, "hack", "Z50-DGPU", 0)
-//{
+DefinitionBlock ("", "SSDT", 2, "hack", "Z50-DGPU", 0)
+{
     External(_SB.PCI0, DeviceObj)
     Scope(_SB.PCI0)
     {
@@ -41,32 +41,15 @@
                 }
             }
         }
-        
-        External(LPCB.EC, DeviceObj)
-        Scope(LPCB.EC)
-        {
-            OperationRegion(ECR3, EmbeddedControl, 0x00, 0xFF)
-            
-            External(XREG, MethodObj)
-            External(GATY, FieldUnitObj)
-            Method (_REG, 2)
-            {
-                XREG(Arg0, Arg1)
-                If(Arg0 == 3 && Arg1 == 1)
-                {
-                    GATY = Zero
-                }
-            }
-        }
     }
     
     Device(RMD1)
     {
-        Name(_HID, "RMD20000")
+        Name(_HID, "RMD10000")
         Method(_INI)
         {
             If (CondRefOf(\_SB.PCI0.RP05.PEGP._OFF)) { \_SB.PCI0.RP05.PEGP._OFF() }
         }
     }
-//}
+}
 //EOF
