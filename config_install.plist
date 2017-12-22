@@ -112,6 +112,10 @@
 			<key>Legacy</key>
 			<true/>
 		</dict>
+		<key>Hide</key>
+		<array>
+			<string>Preboot</string>
+		</array>
 		<key>Theme</key>
 		<string>embedded</string>
 	</dict>
