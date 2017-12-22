@@ -116,7 +116,6 @@
 		<string>SSDT-IGPU.dsl</string>
 		<string>SSDT-HDEF.dsl</string>
 		<string>SSDT-HDAU.dsl</string>
-		<string>SSDT-GPRW.dsl</string>
 		<string>SSDT-PNLF.dsl</string>
 		<string>SSDT-XOSI.dsl</string>
 		<string>SSDT-PluginType1.dsl</string>

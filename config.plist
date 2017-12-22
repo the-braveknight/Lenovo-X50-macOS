@@ -145,14 +145,6 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change Method(GPRW,2,N) to XPRW</string>
-					<key>Find</key>
-					<data>R1BSVwI=</data>
-					<key>Replace</key>
-					<data>WFBSVwI=</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
 					<string>change _PRW in LID to XPRW (disabling it)</string>
 					<key>Find</key>
 					<data>CF9QUlc=</data>
