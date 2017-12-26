@@ -33,7 +33,6 @@ DefinitionBlock ("", "SSDT", 2, "hack", "TBK-G50", 0)
     #include "SSDT-PS2K.dsl"
     #include "SSDT-UIAC.dsl"
     #include "SSDT-DGPU.dsl"
-    #include "SSDT-REG.dsl"
     #include "SSDT-XSEL.dsl"
     #include "SSDT-CX20751.dsl"
     #include "SSDT-BATT-G50.dsl"
