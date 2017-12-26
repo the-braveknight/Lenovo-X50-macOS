@@ -121,11 +121,11 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change Method(_OFF,0,S) to XOFF</string>
+					<string>change _OFF If(/ECON) to EXON</string>
 					<key>Find</key>
-					<data>X09GRgg=</data>
+					<data>MaAfXEVDT04=</data>
 					<key>Replace</key>
-					<data>WE9GRgg=</data>
+					<data>MaAfXEVYT04=</data>
 				</dict>
 				<dict>
 					<key>Comment</key>
