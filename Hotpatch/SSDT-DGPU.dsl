@@ -7,17 +7,17 @@
     // _REG when EC is ready.
     Name(EXON, 0)
     
+    // Assuming PEGP device is at \_SB.PCI0.RP05.PEGP (which is the case
+    // for Z50/Z40/G50/G40) laptops.
     Device(DGPU)
     {
         Name(_HID, "DGPU0000")
-        
+                
         External(\_SB.PCI0.RP05.PEGP._OFF, MethodObj)
-        Method(EXST) { Return(CondRefOf(\_SB.PCI0.RP05.PEGP._OFF)) } // Check if DGPU exists
-        
-        Method(DGOF) { If(EXST) { \_SB.PCI0.RP05.PEGP._OFF() } } // Call DGPU _OFF (without EC code)
+        Method(DGOF) { If(CondRefOf(\_SB.PCI0.RP05.PEGP._OFF)) { \_SB.PCI0.RP05.PEGP._OFF() } } // Call DGPU _OFF (without EC code)
         
         External(\_SB.PCI0.LPCB.EC.GATY, FieldUnitObj)
-        Method(ECOF) { If(EXST) { \_SB.PCI0.LPCB.EC.GATY = 0 } } // EC disable code
+        Method(ECOF) { If(CondRefOf(\_SB.PCI0.RP05.PEGP._OFF)) { \_SB.PCI0.LPCB.EC.GATY = 0 } } // EC disable code
         
         Method(_INI) { DGOF() }
     }
@@ -28,7 +28,6 @@
         OperationRegion(ECR3, EmbeddedControl, 0x00, 0xFF)
         
         External(XREG, MethodObj)
-        External(GATY, FieldUnitObj)
         Method (_REG, 2)
         {
             XREG(Arg0, Arg1)
