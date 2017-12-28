@@ -30,10 +30,10 @@ DefinitionBlock ("", "SSDT", 2, "hack", "TBK-Z50", 0)
         Name(LMAX, 0x56c)
     }
     
+    #include "SSDT-BIOS.dsl"
     #include "SSDT-PS2K.dsl"
     #include "SSDT-UIAC.dsl"
     #include "SSDT-DGPU.dsl"
-    #include "SSDT-XSEL.dsl"
     #include "SSDT-CX20751.dsl"
     #include "SSDT-BATT-Z50.dsl"
 }

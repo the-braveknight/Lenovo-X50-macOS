@@ -137,14 +137,6 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change Method(XSEL,0,S) to XXEL</string>
-					<key>Find</key>
-					<data>WFNFTAg=</data>
-					<key>Replace</key>
-					<data>WFhFTAg=</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
 					<string>change _PRW in LID to XPRW (disabling it)</string>
 					<key>Find</key>
 					<data>CF9QUlc=</data>
@@ -158,6 +150,22 @@
 					<data>X0RTTQ==</data>
 					<key>Replace</key>
 					<data>WERTTQ==</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Change XHCI to XHCM (BIOS override)</string>
+					<key>Find</key>
+					<data>k1hIQ0k=</data>
+					<key>Replace</key>
+					<data>k1hIQ00=</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Change MAUL to MNUL (BIOS override)</string>
+					<key>Find</key>
+					<data>k01BVUw=</data>
+					<key>Replace</key>
+					<data>k01OVUw=</data>
 				</dict>
 			</array>
 		</dict>
