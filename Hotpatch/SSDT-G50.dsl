@@ -31,10 +31,10 @@ DefinitionBlock ("", "SSDT", 2, "hack", "TBK-G50", 0)
     }
     
     #include "SSDT-BIOS.dsl"
-    #include "SSDT-PS2K.dsl"
     #include "SSDT-UIAC.dsl"
-    #include "SSDT-DGPU.dsl"
     #include "SSDT-CX20751.dsl"
+    #include "SSDT-DGPU.dsl"
+    #include "SSDT-PS2K.dsl"
     #include "SSDT-BATT.dsl"
 }
 //EOF
