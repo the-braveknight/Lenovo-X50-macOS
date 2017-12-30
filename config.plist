@@ -121,22 +121,6 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change _OFF If(/ECON) to EXON</string>
-					<key>Find</key>
-					<data>MaAfXEVDT04=</data>
-					<key>Replace</key>
-					<data>MaAfXEVYT04=</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
-					<string>change Method(_REG,2,N to XREG</string>
-					<key>Find</key>
-					<data>X1JFRwI=</data>
-					<key>Replace</key>
-					<data>WFJFRwI=</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
 					<string>change _PRW in LID to XPRW (disabling it)</string>
 					<key>Find</key>
 					<data>CF9QUlc=</data>
@@ -150,6 +134,14 @@
 					<data>X0RTTQ==</data>
 					<key>Replace</key>
 					<data>WERTTQ==</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Change GATY to GATX</string>
+					<key>Find</key>
+					<data>R0FUWQI=</data>
+					<key>Replace</key>
+					<data>R0FUWAI=</data>
 				</dict>
 				<dict>
 					<key>Comment</key>
