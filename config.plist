@@ -145,19 +145,19 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>Change XHCI to XHCM (BIOS override)</string>
+					<string>Change XHCI to XHCX (BIOS override)</string>
 					<key>Find</key>
-					<data>k1hIQ0k=</data>
+					<data>WEhDSQg=</data>
 					<key>Replace</key>
-					<data>k1hIQ00=</data>
+					<data>WEhDWAg=</data>
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>Change MAUL to MNUL (BIOS override)</string>
+					<string>Change MAUL to MAUX (BIOS override)</string>
 					<key>Find</key>
-					<data>k01BVUw=</data>
+					<data>TUFVTAg=</data>
 					<key>Replace</key>
-					<data>k01OVUw=</data>
+					<data>TUFVWAg=</data>
 				</dict>
 			</array>
 		</dict>
