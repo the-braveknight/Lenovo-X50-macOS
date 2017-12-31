@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function downloadTools() {
-    echo "Downloading macos-tools..."
+    echo "Downloading latest macos-tools..."
     rm -Rf macos-tools && git clone https://github.com/the-braveknight/macos-tools --quiet
 }
 
@@ -49,25 +49,21 @@ function updateConfig() {
 case "$1" in
     --download-tools)
         downloadTools
-        ;;
+    ;;
     *)
-        if [[ ! -d macos-tools ]]; then
-            echo "macos-tools not downloaded."
-            echo "Use --download-tools argument."
-            exit 1
-        fi
-        case "$1" in
-            --download-requirements)
-                downloadRequirements
-                ;;
-            --install-downloads)
-                installDownloads
-                ;;
-            --install-config)
-                installConfig
-                ;;
-            --update-config)
-                updateConfig
-                ;;
-        esac
+    if [[ ! -d macos-tools ]]; then downloadTools; fi
+    case "$1" in
+        --download-requirements)
+            downloadRequirements
+        ;;
+        --install-downloads)
+            installDownloads
+        ;;
+        --install-config)
+            installConfig
+        ;;
+        --update-config)
+            updateConfig
+        ;;
+    esac
 esac
