@@ -6,7 +6,9 @@ function downloadTools() {
 }
 
 function downloadRequirements() {
-    macos-tools/download.sh settings.plist
+    macos-tools/bitbucket_download.sh Downloads/Kexts.plist
+    macos-tools/bitbucket_download.sh Downloads/Tools.plist
+    macos-tools/hotpatch_download.sh Downloads/Hotpatch.plist
 }
 
 function installPS2Kext() {
@@ -29,7 +31,7 @@ function installBacklightInjector() {
 }
 
 function installDownloads() {
-    macos-tools/install_downloads.sh settings.plist
+    macos-tools/install_downloads.sh Kext-Exceptions.plist
 
     installHDAInjector
     installPS2Kext

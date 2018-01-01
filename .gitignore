@@ -1,5 +1,7 @@
 .DS_Store
 AppleHDA*
 Build/*.aml
-Downloads/*
-macos-tools/*
+Downloads/Kexts
+Downloads/Tools
+Downloads/Hotpatch
+macos-tools

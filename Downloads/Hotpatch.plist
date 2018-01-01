@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>SSDT-IGPU.dsl</string>
+	<string>SSDT-HDEF.dsl</string>
+	<string>SSDT-HDAU.dsl</string>
+	<string>SSDT-GPRW.dsl</string>
+	<string>SSDT-PNLF.dsl</string>
+	<string>SSDT-XOSI.dsl</string>
+	<string>SSDT-PluginType1.dsl</string>
+	<string>SSDT-XHC.dsl</string>
+	<string>SSDT-Disable_EH01.dsl</string>
+</array>
+</plist>
