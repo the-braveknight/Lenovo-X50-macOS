@@ -31,7 +31,7 @@ function installBacklightInjector() {
 }
 
 function installDownloads() {
-    macos-tools/install_downloads.sh -p Kext-Exceptions.plist
+    macos-tools/install_downloads.sh -e Kext-Exceptions.plist
 
     installHDAInjector
     installPS2Kext
