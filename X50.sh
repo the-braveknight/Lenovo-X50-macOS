@@ -13,21 +13,21 @@ function downloadRequirements() {
 
 function installPS2Kext() {
     if [[ "$(macos-tools/trackpad_model.sh)" == *"SYN"* ]]; then
-        macos-tools/install_kext.sh $(macos-tools/find_kext.sh VoodooPS2Controller.kext)
+        macos-tools/install_kext.sh -n $(macos-tools/find_kext.sh -n VoodooPS2Controller.kext)
         sudo rm -Rf /Library/Extensions/ApplePS2SmartTouchPad.kext
     else
-        macos-tools/install_kext.sh Kexts/ApplePS2SmartTouchPad.kext
+        macos-tools/install_kext.sh -n Kexts/ApplePS2SmartTouchPad.kext
         sudo rm -Rf /Library/Extensions/VoodooPS2Controller.kext
     fi
 }
 
 function installHDAInjector() {
     macos-tools/create_hdainjector.sh Resources_CX20751
-    macos-tools/install_kext.sh AppleHDAInjector.kext
+    macos-tools/install_kext.sh -n AppleHDAInjector.kext
 }
 
 function installBacklightInjector() {
-    macos-tools/install_kext.sh Kexts/AppleBacklightInjector.kext
+    macos-tools/install_kext.sh -n Kexts/AppleBacklightInjector.kext
 }
 
 function installDownloads() {
