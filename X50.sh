@@ -6,9 +6,9 @@ function downloadTools() {
 }
 
 function downloadRequirements() {
-    macos-tools/bitbucket_download.sh -p Downloads/Kexts.plist -o Downloads
-    macos-tools/bitbucket_download.sh -p Downloads/Tools.plist -o Downloads
-    macos-tools/hotpatch_download.sh -p Downloads/Hotpatch.plist -o Downloads
+    rm -Rf Downloads/Kexts && mkdir Downloads/Kexts && macos-tools/bitbucket_download.sh -p Downloads/Kexts.plist -o Downloads/Kexts
+    rm -Rf Downloads/Tools && mkdir Downloads/Tools && macos-tools/bitbucket_download.sh -p Downloads/Tools.plist -o Downloads/Tools
+    rm -Rf Downloads/Hotpatch && mkdir Downloads/Hotpatch && macos-tools/hotpatch_download.sh -p Downloads/Hotpatch.plist -o Downloads/Hotpatch
 }
 
 function installPS2Kext() {
@@ -22,8 +22,8 @@ function installPS2Kext() {
 }
 
 function installHDAInjector() {
-    macos-tools/create_hdainjector.sh Resources_CX20751
-    macos-tools/install_kext.sh AppleHDAInjector.kext
+    macos-tools/create_hdainjector.sh -c CX20751 -r Resources_CX20751
+    macos-tools/install_kext.sh AppleHDA_CX20751.kext
 }
 
 function installBacklightInjector() {
@@ -31,6 +31,7 @@ function installBacklightInjector() {
 }
 
 function installDownloads() {
+    macos-tools/unarchive_file.sh -d Downloads
     macos-tools/install_binary.sh -d Downloads
     macos-tools/install_app.sh -d Downloads
     macos-tools/install_kext.sh -d Downloads -e Kext-Exceptions.plist
