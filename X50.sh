@@ -1,11 +1,9 @@
 #!/bin/bash
 
-function downloadTools() {
+if [[ ! -d macos-tools ]]; then
     echo "Downloading latest macos-tools..."
     rm -Rf macos-tools && git clone https://github.com/the-braveknight/macos-tools --quiet
-}
-
-if [[ ! -d macos-tools ]]; then downloadTools; fi
+fi
 
 case "$1" in
     --download-tools)
@@ -52,7 +50,7 @@ case "$1" in
         macos-tools/install_config.sh config.plist
     ;;
     --update-config)
-        macos-tools/update_config.sh config.plist
+        macos-tools/install_config.sh -u config.plist
     ;;
     --download-requirements)
         $0 --download-kexts
