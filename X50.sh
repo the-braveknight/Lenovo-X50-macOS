@@ -36,7 +36,7 @@ case "$1" in
     ;;
     --install-ps2kext)
         if [[ "$(macos-tools/trackpad_model.sh)" == *"SYN"* ]]; then
-            macos-tools/install_kext.sh $(macos-tools/find_kext.sh VoodooPS2Controller.kext)
+            macos-tools/install_kext.sh Downloads/Kexts/RehabMan-Voodoo-*/Release/VoodooPS2Controller.kext
             sudo rm -Rf /Library/Extensions/ApplePS2SmartTouchPad.kext
         else
             macos-tools/install_kext.sh Kexts/ApplePS2SmartTouchPad.kext
