@@ -46,6 +46,9 @@ case "$1" in
     ;;
     --install-kexts)
         macos-tools/install_kext.sh -d $downloads -e $(cat $kexts_exceptions)
+        $0 --install-hdainjector
+        $0 --install-backlightinjector
+        $0 --install-ps2kext
     ;;
     --install-hdainjector)
         macos-tools/create_hdainjector.sh -c $hda_codec -r $hda_resources
@@ -82,9 +85,6 @@ case "$1" in
         $0 --install-binaries
         $0 --install-apps
         $0 --install-kexts
-        $0 --install-backlightinjector
-        $0 --install-hdainjector
-        $0 --install-ps2kext
         $0 --update-kernelcache
     ;;
 esac
