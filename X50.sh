@@ -1,5 +1,22 @@
 #!/bin/bash
 
+downloads=Downloads
+
+kexts_dir=$downloads/Kexts
+kexts_downloads=$downloads/Kexts.txt
+kexts_exceptions=Kexts-Exceptions.txt
+
+tools_dir=$downloads/Tools
+tools_downloads=$downloads/Tools.txt
+
+hotpatch_dir=$downloads/Hotpatch
+hotpatch_downloads=$downloads/Hotpatch.txt
+
+hda_codec=CX20751
+hda_resources=Resources_CX20751
+
+ps2_trackpad=$(ioreg -n PS2M -arxw0 > /tmp/ps2_trackpad.plist && /usr/libexec/PlistBuddy -c "Print :0:name" /tmp/ps2_trackpad.plist)
+
 if [[ ! -d macos-tools ]]; then
     echo "Downloading latest macos-tools..."
     rm -Rf macos-tools && git clone https://github.com/the-braveknight/macos-tools --quiet
@@ -7,36 +24,39 @@ fi
 
 case "$1" in
     --download-tools)
-        rm -Rf Downloads/Tools && mkdir Downloads/Tools && macos-tools/bitbucket_download.sh -p Downloads/Tools.plist -o Downloads/Tools
+        rm -Rf $tools_dir && mkdir $tools_dir
+        while read tool; do macos-tools/bitbucket_download.sh -a RehabMan -n "$tool" -o $tools_dir; done < $tools_downloads
     ;;
     --download-kexts)
-        rm -Rf Downloads/Kexts && mkdir Downloads/Kexts && macos-tools/bitbucket_download.sh -p Downloads/Kexts.plist -o Downloads/Kexts
+        rm -Rf $kexts_dir && mkdir $kexts_dir
+        while read kext; do macos-tools/bitbucket_download.sh -a RehabMan -n "$kext" -o $kexts_dir; done < $kexts_downloads
     ;;
     --download-hotpatch)
-        rm -Rf Downloads/Hotpatch && mkdir Downloads/Hotpatch && macos-tools/hotpatch_download.sh -p Downloads/Hotpatch.plist -o Downloads/Hotpatch
+        rm -Rf $hotpatch_dir && mkdir $hotpatch_dir
+        while read ssdt; do macos-tools/hotpatch_download.sh -o $hotpatch_dir "$ssdt"; done < $hotpatch_downloads
     ;;
     --unarchive-downloads)
-        macos-tools/unarchive_file.sh -d Downloads
+        macos-tools/unarchive_file.sh -d $downloads
     ;;
     --install-apps)
-        macos-tools/install_app.sh -d Downloads
+        macos-tools/install_app.sh -d $downloads
     ;;
     --install-binaries)
-        macos-tools/install_binary.sh -d Downloads
+        macos-tools/install_binary.sh -d $downloads
     ;;
     --install-kexts)
-        macos-tools/install_kext.sh -d Downloads -e Kext-Exceptions.plist
+        macos-tools/install_kext.sh -d $downloads -e $(cat $kexts_exceptions)
     ;;
     --install-hdainjector)
-        macos-tools/create_hdainjector.sh -c CX20751 -r Resources_CX20751
-        macos-tools/install_kext.sh AppleHDA_CX20751.kext
+        macos-tools/create_hdainjector.sh -c $hda_codec -r $hda_resources
+        macos-tools/install_kext.sh AppleHDA_$hda_codec.kext
     ;;
     --install-backlightinjector)
         macos-tools/install_kext.sh Kexts/AppleBacklightInjector.kext
     ;;
     --install-ps2kext)
-        if [[ "$(macos-tools/trackpad_model.sh)" == *"SYN"* ]]; then
-            macos-tools/install_kext.sh Downloads/Kexts/RehabMan-Voodoo-*/Release/VoodooPS2Controller.kext
+        if [[ "$ps2_trackpad" == *"SYN"* ]]; then
+            macos-tools/install_kext.sh $kexts_dir/RehabMan-Voodoo-*/Release/VoodooPS2Controller.kext
             sudo rm -Rf /Library/Extensions/ApplePS2SmartTouchPad.kext
         else
             macos-tools/install_kext.sh Kexts/ApplePS2SmartTouchPad.kext
