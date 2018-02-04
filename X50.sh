@@ -2,6 +2,10 @@
 
 downloads=Downloads
 
+essential_kexts=Essential-Kexts.txt
+
+local_kexts_dir=Kexts
+
 kexts_dir=$downloads/Kexts
 kexts_downloads=$downloads/Kexts.txt
 kexts_exceptions=Kexts-Exceptions.txt
@@ -21,6 +25,10 @@ if [[ ! -d macos-tools ]]; then
     echo "Downloading latest macos-tools..."
     rm -Rf macos-tools && git clone https://github.com/the-braveknight/macos-tools --quiet
 fi
+
+function findKext() {
+    find $kexts_dir $local_kexts_dir -name $1 -not -path \*/PlugIns/* -not -path \*/Debug/*
+}
 
 case "$1" in
     --download-tools)
@@ -49,6 +57,9 @@ case "$1" in
         $0 --install-hdainjector
         $0 --install-backlightinjector
         $0 --install-ps2kext
+    ;;
+    --install-essential-kexts)
+        macos-tools/install_kext.sh -i $(for kext in $(cat $essential_kexts); do findKext $kext; done)
     ;;
     --install-hdainjector)
         macos-tools/create_hdainjector.sh -c $hda_codec -r $hda_resources
@@ -85,6 +96,7 @@ case "$1" in
         $0 --install-binaries
         $0 --install-apps
         $0 --install-kexts
+        $0 --install-essential-kexts
         $0 --update-kernelcache
     ;;
 esac
