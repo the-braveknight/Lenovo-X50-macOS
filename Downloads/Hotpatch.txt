@@ -4,6 +4,6 @@ SSDT-HDAU.dsl
 SSDT-GPRW.dsl
 SSDT-PNLF.dsl
 SSDT-XOSI.dsl
-SSDT-PluginType1.dsl
+SSDT-XCPM.dsl
 SSDT-XHC.dsl
-SSDT-Disable_EH01.dsl
+SSDT-DEH01.dsl
