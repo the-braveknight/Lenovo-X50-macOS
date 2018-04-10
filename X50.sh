@@ -7,7 +7,8 @@ essential_kexts=Essential-Kexts.txt
 local_kexts_dir=Kexts
 
 kexts_dir=$downloads/Kexts
-kexts_downloads=$downloads/Kexts.txt
+bitbucket_kexts_downloads=$downloads/Kexts.txt
+github_kexts_downloads=$downloads/GitHub-Kexts.txt
 kexts_exceptions=Kexts-Exceptions.txt
 
 tools_dir=$downloads/Tools
@@ -37,7 +38,11 @@ case "$1" in
     ;;
     --download-kexts)
         rm -Rf $kexts_dir && mkdir $kexts_dir
-        while read kext; do macos-tools/bitbucket_download.sh -a RehabMan -n "$kext" -o $kexts_dir; done < $kexts_downloads
+        while read kext; do macos-tools/bitbucket_download.sh -a RehabMan -n "$kext" -o $kexts_dir; done < $bitbucket_kexts_downloads
+
+        # Temporary github download logic
+        macos-tools/github_download.sh -r https://github.com/vit9696/Lilu/releases -o $kexts_dir/vit9696-Lilu.zip
+        macos-tools/github_download.sh -r https://github.com/lvs1974/IntelGraphicsFixup/releases -o $kexts_dir/lvs1974-IntelGraphicsFixup.zip
     ;;
     --download-hotpatch)
         rm -Rf $hotpatch_dir && mkdir $hotpatch_dir
