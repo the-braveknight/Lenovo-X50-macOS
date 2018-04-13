@@ -36,7 +36,7 @@ case "$1" in
         rm -Rf $tools_dir && mkdir $tools_dir
 
         macos-tools/bitbucket_download.sh -a RehabMan -n os-x-maciasl-patchmatic -o $tools_dir
-        macos-tools/bitbucket_download.sh -a RehabMan -n "os-x-maciasl-patchmatic RehabMan-patchmatic" -o $tools_dir
+        macos-tools/bitbucket_download.sh -a RehabMan -n os-x-maciasl-patchmatic -f RehabMan-patchmatic -o $tools_dir
         macos-tools/bitbucket_download.sh -a RehabMan -n acpica -o $tools_dir
     ;;
     --download-kexts)
