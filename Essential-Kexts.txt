@@ -1,1 +1,0 @@
-FakeSMC.kext ApplePS2SmartTouchPad.kext RealtekRTL8111.kext USBInjectAll.kext ACPIBatteryManager.kext

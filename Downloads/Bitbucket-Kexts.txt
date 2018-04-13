@@ -1,9 +1,0 @@
-os-x-fakesmc-kozlek
-os-x-realtek-network
-os-x-fake-pci-id
-os-x-voodoo-ps2-controller
-os-x-acpi-battery-driver
-os-x-brcmpatchram
-os-x-usb-inject-all
-os-x-eapd-codec-commander
-ath9kfixup

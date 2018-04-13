@@ -2,25 +2,25 @@
 
 downloads=Downloads
 
-essential_kexts=Essential-Kexts.txt
-
 local_kexts_dir=Kexts
-
 kexts_dir=$downloads/Kexts
-bitbucket_kexts_downloads=$downloads/Kexts.txt
-github_kexts_downloads=$downloads/GitHub-Kexts.txt
-kexts_exceptions=Kexts-Exceptions.txt
+
+kexts_exceptions="Sensors|FakePCIID_BCM57XX|FakePCIID_Intel_GbX|FakePCIID_Intel_HDMI|FakePCIID_XHCIMux|FakePCIID_AR9280_as_AR946x|BrcmFirmwareData|PatchRAM.kext|PS2"
 
 tools_dir=$downloads/Tools
-tools_downloads=$downloads/Tools.txt
 
 hotpatch_dir=$downloads/Hotpatch
-hotpatch_downloads=$downloads/Hotpatch.txt
 
 hda_codec=CX20751
-hda_resources=Resources_CX20751
+hda_resources=Resources_$hda_codec
 
 ps2_trackpad=$(ioreg -n PS2M -arxw0 > /tmp/ps2_trackpad.plist && /usr/libexec/PlistBuddy -c "Print :0:name" /tmp/ps2_trackpad.plist)
+
+if [[ "$ps2_trackpad" == *"SYN"* ]]; then
+    ps2_kext=VoodooPS2Controller.kext
+else
+    ps2_kext=ApplePS2SmartTouchPad.kext
+fi
 
 if [[ ! -d macos-tools ]]; then
     echo "Downloading latest macos-tools..."
@@ -34,19 +34,41 @@ function findKext() {
 case "$1" in
     --download-tools)
         rm -Rf $tools_dir && mkdir $tools_dir
-        while read tool; do macos-tools/bitbucket_download.sh -a RehabMan -n "$tool" -o $tools_dir; done < $tools_downloads
+
+        macos-tools/bitbucket_download.sh -a RehabMan -n os-x-maciasl-patchmatic -o $tools_dir
+        macos-tools/bitbucket_download.sh -a RehabMan -n "os-x-maciasl-patchmatic RehabMan-patchmatic" -o $tools_dir
+        macos-tools/bitbucket_download.sh -a RehabMan -n acpica -o $tools_dir
     ;;
     --download-kexts)
         rm -Rf $kexts_dir && mkdir $kexts_dir
-        while read kext; do macos-tools/bitbucket_download.sh -a RehabMan -n "$kext" -o $kexts_dir; done < $bitbucket_kexts_downloads
 
-        # Temporary github download logic
-        macos-tools/github_download.sh -r https://github.com/vit9696/Lilu/releases -o $kexts_dir/vit9696-Lilu.zip
-        macos-tools/github_download.sh -r https://github.com/lvs1974/IntelGraphicsFixup/releases -o $kexts_dir/lvs1974-IntelGraphicsFixup.zip
+        # Bitbucket kexts
+        macos-tools/bitbucket_download.sh -a RehabMan -n os-x-fakesmc-kozlek -o $kexts_dir
+        macos-tools/bitbucket_download.sh -a RehabMan -n os-x-realtek-network -o $kexts_dir
+        macos-tools/bitbucket_download.sh -a RehabMan -n os-x-fake-pci-id -o $kexts_dir
+        macos-tools/bitbucket_download.sh -a RehabMan -n os-x-voodoo-ps2-controller -o $kexts_dir
+        macos-tools/bitbucket_download.sh -a RehabMan -n os-x-acpi-battery-driver -o $kexts_dir
+        macos-tools/bitbucket_download.sh -a RehabMan -n os-x-brcmpatchram -o $kexts_dir
+        macos-tools/bitbucket_download.sh -a RehabMan -n os-x-usb-inject-all -o $kexts_dir
+        macos-tools/bitbucket_download.sh -a RehabMan -n os-x-eapd-codec-commander -o $kexts_dir
+        macos-tools/bitbucket_download.sh -a RehabMan -n ath9kfixup -o $kexts_dir
+
+        # GitHub kexts
+        macos-tools/github_download.sh -u vit9696 -r Lilu -o $kexts_dir
+        macos-tools/github_download.sh -u lvs1974 -r IntelGraphicsFixup -o $kexts_dir
     ;;
     --download-hotpatch)
         rm -Rf $hotpatch_dir && mkdir $hotpatch_dir
-        while read ssdt; do macos-tools/hotpatch_download.sh -o $hotpatch_dir "$ssdt"; done < $hotpatch_downloads
+
+        macos-tools/hotpatch_download.sh -o $hotpatch_dir SSDT-IGPU.dsl
+        macos-tools/hotpatch_download.sh -o $hotpatch_dir SSDT-HDEF.dsl
+        macos-tools/hotpatch_download.sh -o $hotpatch_dir SSDT-HDAU.dsl
+        macos-tools/hotpatch_download.sh -o $hotpatch_dir SSDT-GPRW.dsl
+        macos-tools/hotpatch_download.sh -o $hotpatch_dir SSDT-PNLF.dsl
+        macos-tools/hotpatch_download.sh -o $hotpatch_dir SSDT-XOSI.dsl
+        macos-tools/hotpatch_download.sh -o $hotpatch_dir SSDT-XCPM.dsl
+        macos-tools/hotpatch_download.sh -o $hotpatch_dir SSDT-XHC.dsl
+        macos-tools/hotpatch_download.sh -o $hotpatch_dir SSDT-DEH01.dsl
     ;;
     --unarchive-downloads)
         macos-tools/unarchive_file.sh -d $downloads
@@ -58,13 +80,17 @@ case "$1" in
         macos-tools/install_binary.sh -d $downloads
     ;;
     --install-kexts)
-        macos-tools/install_kext.sh -d $downloads -e $(cat $kexts_exceptions)
+        macos-tools/install_kext.sh -d $downloads -e $kexts_exceptions
         $0 --install-hdainjector
         $0 --install-backlightinjector
         $0 --install-ps2kext
     ;;
     --install-essential-kexts)
-        macos-tools/install_kext.sh -i $(for kext in $(cat $essential_kexts); do findKext $kext; done)
+        macos-tools/install_kext.sh -i $(findKext FakeSMC.kext)
+        macos-tools/install_kext.sh -i $(findKext RealtekRTL8111.kext)
+        macos-tools/install_kext.sh -i $(findKext USBInjectAll.kext)
+        macos-tools/install_kext.sh -i $(findKext ACPIBatteryManager.kext)
+        macos-tools/install_kext.sh -i $(findKext $ps2_kext)
     ;;
     --install-hdainjector)
         macos-tools/create_hdainjector.sh -c $hda_codec -r $hda_resources
@@ -74,13 +100,10 @@ case "$1" in
         macos-tools/install_kext.sh Kexts/AppleBacklightInjector.kext
     ;;
     --install-ps2kext)
-        if [[ "$ps2_trackpad" == *"SYN"* ]]; then
-            macos-tools/install_kext.sh $kexts_dir/RehabMan-Voodoo-*/Release/VoodooPS2Controller.kext
-            sudo rm -Rf /Library/Extensions/ApplePS2SmartTouchPad.kext
-        else
-            macos-tools/install_kext.sh Kexts/ApplePS2SmartTouchPad.kext
-            sudo rm -Rf /Library/Extensions/VoodooPS2Controller.kext
-        fi
+        sudo rm -Rf /Library/Extensions/ApplePS2SmartTouchPad.kext
+        sudo rm -Rf /Library/Extensions/VoodooPS2Controller.kext
+
+        macos-tools/install_kext.sh $(findKext $ps2_kext)
     ;;
     --update-kernelcache)
         sudo kextcache -i /

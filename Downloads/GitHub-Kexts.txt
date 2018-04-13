@@ -1,2 +1,0 @@
-https://github.com/vit9696/Lilu/releases vit9696-Lilu.zip
-https://github.com/lvs1974/IntelGraphicsFixup/releases lvs1974-IntelGraphicsFixup.zip
