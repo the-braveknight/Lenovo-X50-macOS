@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#set -x
+
 downloads=Downloads
 
 local_kexts_dir=Kexts
@@ -33,14 +35,14 @@ function findKext() {
 
 case "$1" in
     --download-tools)
-        rm -Rf $tools_dir && mkdir $tools_dir
+        rm -Rf $tools_dir && mkdir -p $tools_dir
 
         macos-tools/bitbucket_download.sh -a RehabMan -n os-x-maciasl-patchmatic -o $tools_dir
         macos-tools/bitbucket_download.sh -a RehabMan -n os-x-maciasl-patchmatic -f RehabMan-patchmatic -o $tools_dir
         macos-tools/bitbucket_download.sh -a RehabMan -n acpica -o $tools_dir
     ;;
     --download-kexts)
-        rm -Rf $kexts_dir && mkdir $kexts_dir
+        rm -Rf $kexts_dir && mkdir -p $kexts_dir
 
         # Bitbucket kexts
         macos-tools/bitbucket_download.sh -a RehabMan -n os-x-fakesmc-kozlek -o $kexts_dir
@@ -58,7 +60,7 @@ case "$1" in
         macos-tools/github_download.sh -u lvs1974 -r IntelGraphicsFixup -o $kexts_dir
     ;;
     --download-hotpatch)
-        rm -Rf $hotpatch_dir && mkdir $hotpatch_dir
+        rm -Rf $hotpatch_dir && mkdir -p $hotpatch_dir
 
         macos-tools/hotpatch_download.sh -o $hotpatch_dir SSDT-IGPU.dsl
         macos-tools/hotpatch_download.sh -o $hotpatch_dir SSDT-HDEF.dsl
