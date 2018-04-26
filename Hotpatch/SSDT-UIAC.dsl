@@ -1,7 +1,9 @@
 // USBInjectAll.kext port configuration for Lenovo Z50-70/Z40-70 laptops
 
-//DefinitionBlock ("", "SSDT", 2, "hack", "UIAC", 0)
-//{
+#ifndef NO_DEFINITIONBLOCK
+DefinitionBlock ("", "SSDT", 2, "hack", "UIAC", 0)
+{
+#endif
     // Override for USBInjectAll.kext
     Device(UIAC)
     {
@@ -49,5 +51,7 @@
             },
         })
     }
-//}
+#ifndef NO_DEFINITIONBLOCK
+}
+#endif
 //EOF

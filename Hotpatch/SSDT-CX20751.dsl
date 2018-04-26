@@ -1,7 +1,9 @@
 // CodecCommander.kext configuration to fix external mic issues
 
-//DefinitionBlock ("", "SSDT", 1, "hack", "CX20751/2", 0)
-//{
+#ifndef NO_DEFINITIONBLOCK
+DefinitionBlock ("", "SSDT", 1, "hack", "CX20751/2", 0)
+{
+#endif
     Name(_SB.PCI0.HDEF.RMCF, Package()
     {
         "CodecCommander", Package()
@@ -22,5 +24,7 @@
             "Perform Reset on External Wake", ">n",
         },
     })
-//}
+#ifndef NO_DEFINITIONBLOCK
+}
+#endif
 //EOF

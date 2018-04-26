@@ -1,7 +1,9 @@
 // For disabling the discrete GPU
 
-//DefinitionBlock ("", "SSDT", 2, "hack", "DGPU", 0)
-//{
+#ifndef NO_DEFINITIONBLOCK
+DefinitionBlock ("", "SSDT", 2, "hack", "DGPU", 0)
+{
+#endif
     // The original GATY FieldUnitObj is renamed to GATX, so
     // calls to GATY land here. This prevents crash when called
     // before EC is initialized.
@@ -19,5 +21,7 @@
             If(CondRefOf(\_SB.PCI0.RP05.PEGP._OFF)) { \_SB.PCI0.RP05.PEGP._OFF() }
         }
     }
-//}
+#ifndef NO_DEFINITIONBLOCK
+}
+#endif
 //EOF

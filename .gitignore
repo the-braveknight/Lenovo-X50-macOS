@@ -3,5 +3,5 @@ AppleHDA*
 Build/*.aml
 Downloads/Kexts
 Downloads/Tools
-Downloads/Hotpatch
+Hotpatch/Downloads
 macos-tools

@@ -11,7 +11,7 @@ kexts_exceptions="Sensors|FakePCIID_BCM57XX|FakePCIID_Intel_GbX|FakePCIID_Intel_
 
 tools_dir=$downloads/Tools
 
-hotpatch_dir=$downloads/Hotpatch
+hotpatch_dir=Hotpatch/Downloads
 
 hda_codec=CX20751
 hda_resources=Resources_$hda_codec

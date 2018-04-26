@@ -1,7 +1,9 @@
 // Battery patches
 
-//DefinitionBlock ("", "SSDT", 2, "hack", "BATT", 0)
-//{
+#ifndef NO_DEFINITIONBLOCK
+DefinitionBlock ("", "SSDT", 2, "hack", "BATT", 0)
+{
+#endif
     External(_SB.PCI0.LPCB.EC, DeviceObj)
     Scope (_SB.PCI0.LPCB.EC)
     {
@@ -423,5 +425,7 @@
         }
         Method (B1B2, 2, NotSerialized) { Return(Or(Arg0, ShiftLeft(Arg1, 8))) }
     }
-//}
+#ifndef NO_DEFINITIONBLOCK
+}
+#endif
 //EOF

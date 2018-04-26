@@ -30,7 +30,16 @@ DefinitionBlock ("", "SSDT", 2, "hack", "TBK-G50", 0)
         Name(LMAX, 0x56c)
     }
     
+    #define NO_DEFINITIONBLOCK
     #include "SSDT-BIOS.dsl"
+    #include "Downloads/SSDT-IGPU.dsl"
+    #include "Downloads/SSDT-PNLF.dsl"
+    #include "Downloads/SSDT-HDEF.dsl"
+    #include "Downloads/SSDT-HDAU.dsl"
+    #include "Downloads/SSDT-DEH01.dsl"
+    #include "Downloads/SSDT-XHC.dsl"
+    #include "Downloads/SSDT-XCPM.dsl"
+    #include "Downloads/SSDT-XOSI.dsl"
     #include "SSDT-UIAC.dsl"
     #include "SSDT-CX20751.dsl"
     #include "SSDT-DGPU.dsl"
