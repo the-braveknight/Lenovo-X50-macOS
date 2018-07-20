@@ -72,22 +72,24 @@ case "$1" in
         macos-tools/hotpatch_download.sh -o $hotpatch_dir SSDT-XHC.dsl
         macos-tools/hotpatch_download.sh -o $hotpatch_dir SSDT-DEH01.dsl
     ;;
-    --unarchive-downloads)
-        macos-tools/unarchive_file.sh -d $downloads
-    ;;
     --install-apps)
-        macos-tools/install_app.sh -d $downloads
+    	macos-tools/unarchive_file.sh -d $tools_dir
+        macos-tools/install_app.sh -d $tools_dir
     ;;
     --install-binaries)
-        macos-tools/install_binary.sh -d $downloads
+    	macos-tools/unarchive_file.sh -d $tools_dir
+        macos-tools/install_binary.sh -d $tools_dir
     ;;
     --install-kexts)
-        macos-tools/install_kext.sh -d $downloads -e $kexts_exceptions
+    	macos-tools/unarchive_file.sh -d $kexts_dir
+        macos-tools/install_kext.sh -d $kexts_dir -e $kexts_exceptions
         $0 --install-hdainjector
         $0 --install-backlightinjector
         $0 --install-ps2kext
+        $0 --update-kernelcache
     ;;
     --install-essential-kexts)
+    	macos-tools/unarchive_file.sh -d $kexts_dir
         macos-tools/install_kext.sh -i $(findKext FakeSMC.kext)
         macos-tools/install_kext.sh -i $(findKext RealtekRTL8111.kext)
         macos-tools/install_kext.sh -i $(findKext USBInjectAll.kext)
@@ -116,17 +118,21 @@ case "$1" in
     --update-config)
         macos-tools/install_config.sh -u config.plist
     ;;
+    --update)
+    	echo "Checking for updates..."
+        git stash --quiet && git pull
+        echo "Checking for macos-tools updates..."
+        cd macos-tools && git stash --quiet && git pull && cd ..
+    ;;
     --download-requirements)
         $0 --download-kexts
         $0 --download-tools
         $0 --download-hotpatch
     ;;
     --install-downloads)
-        $0 --unarchive-downloads
         $0 --install-binaries
         $0 --install-apps
-        $0 --install-kexts
         $0 --install-essential-kexts
-        $0 --update-kernelcache
+        $0 --install-kexts
     ;;
 esac
