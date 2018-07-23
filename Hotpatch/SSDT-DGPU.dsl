@@ -22,7 +22,10 @@ DefinitionBlock ("", "SSDT", 2, "hack", "DGPU", 0)
             XREG(Arg0, Arg1)
             
             // Set original GATY (renamed to GATX) to zero.
-            GATX = 0
+            If(Arg0 == 3 && Arg1 == 1)
+            {
+                GATX = 0
+            }
         }
     }
     

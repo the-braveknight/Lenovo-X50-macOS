@@ -1,5 +1,5 @@
 .DS_Store
-AppleHDA*
+Kexts/AppleHDA*
 Build/*.aml
 Downloads/Kexts
 Downloads/Tools

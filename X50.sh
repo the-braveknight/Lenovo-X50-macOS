@@ -53,7 +53,6 @@ case "$1" in
         macos-tools/bitbucket_download.sh -a RehabMan -n os-x-brcmpatchram -o $kexts_dir
         macos-tools/bitbucket_download.sh -a RehabMan -n os-x-usb-inject-all -o $kexts_dir
         macos-tools/bitbucket_download.sh -a RehabMan -n os-x-eapd-codec-commander -o $kexts_dir
-        macos-tools/bitbucket_download.sh -a RehabMan -n ath9kfixup -o $kexts_dir
 
         # GitHub kexts
         macos-tools/github_download.sh -u vit9696 -r Lilu -o $kexts_dir
@@ -97,11 +96,11 @@ case "$1" in
         macos-tools/install_kext.sh -i $(findKext $ps2_kext)
     ;;
     --install-hdainjector)
-        macos-tools/create_hdainjector.sh -c $hda_codec -r $hda_resources
-        macos-tools/install_kext.sh AppleHDA_$hda_codec.kext
+        macos-tools/create_hdainjector.sh -c $hda_codec -r $hda_resources -o Kexts
+        macos-tools/install_kext.sh $local_kexts_dir/AppleHDA_$hda_codec.kext
     ;;
     --install-backlightinjector)
-        macos-tools/install_kext.sh Kexts/AppleBacklightInjector.kext
+        macos-tools/install_kext.sh $local_kexts_dir/AppleBacklightInjector.kext
     ;;
     --install-ps2kext)
         sudo rm -Rf /Library/Extensions/ApplePS2SmartTouchPad.kext
