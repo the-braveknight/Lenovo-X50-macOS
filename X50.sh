@@ -56,7 +56,7 @@ case "$1" in
 
         # GitHub kexts
         macos-tools/github_download.sh -u vit9696 -r Lilu -o $kexts_dir
-        macos-tools/github_download.sh -u lvs1974 -r IntelGraphicsFixup -o $kexts_dir
+        macos-tools/github_download.sh -u acidanthera -r WhateverGreen -o $kexts_dir
     ;;
     --download-hotpatch)
         rm -Rf $hotpatch_dir && mkdir -p $hotpatch_dir

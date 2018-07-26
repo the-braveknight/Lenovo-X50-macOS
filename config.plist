@@ -8,9 +8,13 @@
 		<dict>
 			<key>Fixes</key>
 			<dict>
-				<key>FixRTC</key>
+				<key>FixIPIC</key>
 				<true/>
 				<key>FixHPET</key>
+				<true/>
+				<key>FixRTC</key>
+				<true/>
+				<key>FixTMR</key>
 				<true/>
 			</dict>
 			<key>Patches</key>
@@ -178,7 +182,7 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>dart=0 -ath9565</string>
+		<string>dart=0</string>
 		<key>Secure</key>
 		<false/>
 		<key>Timeout</key>
