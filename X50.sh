@@ -33,6 +33,10 @@ function findKext() {
     find $kexts_dir $local_kexts_dir -name $1 -not -path \*/PlugIns/* -not -path \*/Debug/*
 }
 
+function removeKext() {
+    sudo rm -Rf /Library/Extensions/$1 /System/Library/Extensions/$1
+}
+
 case "$1" in
     --download-tools)
         rm -Rf $tools_dir && mkdir -p $tools_dir
@@ -85,6 +89,7 @@ case "$1" in
         $0 --install-hdainjector
         $0 --install-backlightinjector
         $0 --install-ps2kext
+        $0 --remove-kexts
         $0 --update-kernelcache
     ;;
     --install-essential-kexts)
@@ -103,10 +108,16 @@ case "$1" in
         macos-tools/install_kext.sh $local_kexts_dir/AppleBacklightInjector.kext
     ;;
     --install-ps2kext)
-        sudo rm -Rf /Library/Extensions/ApplePS2SmartTouchPad.kext
-        sudo rm -Rf /Library/Extensions/VoodooPS2Controller.kext
+        removeKext ApplePS2SmartTouchPad.kext
+        removeKext VoodooPS2Controller.kext
 
         macos-tools/install_kext.sh $(findKext $ps2_kext)
+    ;;
+    --remove-kexts)
+        # Remove kexts that are not used anymore
+        removeKext IntelGraphicsFixup.kext
+        removeKext ATH9KFixup.kext
+        removeKext ATH9KInjector.kext
     ;;
     --update-kernelcache)
         sudo kextcache -i /
