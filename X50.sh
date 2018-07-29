@@ -94,11 +94,7 @@ case "$1" in
     ;;
     --install-essential-kexts)
     	macos-tools/unarchive_file.sh -d $kexts_dir
-        macos-tools/install_kext.sh -i $(findKext FakeSMC.kext)
-        macos-tools/install_kext.sh -i $(findKext RealtekRTL8111.kext)
-        macos-tools/install_kext.sh -i $(findKext USBInjectAll.kext)
-        macos-tools/install_kext.sh -i $(findKext ACPIBatteryManager.kext)
-        macos-tools/install_kext.sh -i $(findKext $ps2_kext)
+        macos-tools/install_kext.sh -i $(findKext FakeSMC.kext) $(findKext RealtekRTL8111.kext) $(findKext FakePCIID.kext) $(findKext FakePCIID_Broadcom_WiFi.kext) $(findKext USBInjectAll.kext) $(findKext ACPIBatteryManager.kext) $(findKext $ps2_kext)
     ;;
     --install-hdainjector)
         macos-tools/create_hdainjector.sh -c $hda_codec -r $hda_resources -o $local_kexts_dir
