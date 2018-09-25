@@ -28,6 +28,12 @@ DefinitionBlock ("", "SSDT", 2, "hack", "TBK-G50", 0)
         // Ones: Default will be used (0x710 for Ivy/Sandy, 0xad9 for Haswell/Broadwell)
         // Other values: must match framebuffer
         Name(LMAX, 0x56c)
+        
+        // DWOU: Disable wake on USB
+        //
+        // 1: Disable wake on USB
+        // 0: Do not disable wake on USB
+        Name(DWOU, 1)
     }
     
     #define NO_DEFINITIONBLOCK

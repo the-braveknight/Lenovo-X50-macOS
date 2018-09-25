@@ -7,7 +7,7 @@ downloads=Downloads
 local_kexts_dir=Kexts
 kexts_dir=$downloads/Kexts
 
-kexts_exceptions="Sensors|FakePCIID_BCM57XX|FakePCIID_Intel_GbX|FakePCIID_Intel_HDMI|FakePCIID_XHCIMux|FakePCIID_AR9280_as_AR946x|BrcmFirmwareData|PatchRAM.kext|PS2"
+kexts_exceptions="Sensors|BrcmFirmwareData|PatchRAM.kext|PS2|AppleIntelKBLGraphics|BroadcomWiFiInjector"
 
 tools_dir=$downloads/Tools
 
@@ -41,7 +41,7 @@ case "$1" in
     --download-tools)
         rm -Rf $tools_dir && mkdir -p $tools_dir
 
-        macos-tools/bitbucket_download.sh -a RehabMan -n os-x-maciasl-patchmatic -o $tools_dir
+        macos-tools/github_download.sh -u acidanthera -r MaciASL -o $tools_dir
         macos-tools/bitbucket_download.sh -a RehabMan -n os-x-maciasl-patchmatic -f RehabMan-patchmatic -o $tools_dir
         macos-tools/bitbucket_download.sh -a RehabMan -n acpica -o $tools_dir
     ;;
@@ -51,7 +51,6 @@ case "$1" in
         # Bitbucket kexts
         macos-tools/bitbucket_download.sh -a RehabMan -n os-x-fakesmc-kozlek -o $kexts_dir
         macos-tools/bitbucket_download.sh -a RehabMan -n os-x-realtek-network -o $kexts_dir
-        macos-tools/bitbucket_download.sh -a RehabMan -n os-x-fake-pci-id -o $kexts_dir
         macos-tools/bitbucket_download.sh -a RehabMan -n os-x-voodoo-ps2-controller -o $kexts_dir
         macos-tools/bitbucket_download.sh -a RehabMan -n os-x-acpi-battery-driver -o $kexts_dir
         macos-tools/bitbucket_download.sh -a RehabMan -n os-x-brcmpatchram -o $kexts_dir
@@ -59,8 +58,9 @@ case "$1" in
         macos-tools/bitbucket_download.sh -a RehabMan -n os-x-eapd-codec-commander -o $kexts_dir
 
         # GitHub kexts
-        macos-tools/github_download.sh -u vit9696 -r Lilu -o $kexts_dir
+        macos-tools/github_download.sh -u acidanthera -r Lilu -o $kexts_dir
         macos-tools/github_download.sh -u acidanthera -r WhateverGreen -o $kexts_dir
+        macos-tools/github_download.sh -u acidanthera -r AirportBrcmFixup -o $kexts_dir
     ;;
     --download-hotpatch)
         rm -Rf $hotpatch_dir && mkdir -p $hotpatch_dir
@@ -89,7 +89,6 @@ case "$1" in
         $0 --install-hdainjector
         $0 --install-backlightinjector
         $0 --install-ps2kext
-        $0 --remove-kexts
         $0 --update-kernelcache
     ;;
     --install-essential-kexts)
@@ -97,7 +96,7 @@ case "$1" in
         EFI=$(macos-tools/mount_efi.sh)
         kext_dest=$EFI/EFI/CLOVER/kexts/Other
         rm -Rf $kext_dest/*.kext
-        macos-tools/install_kext.sh -s $kext_dest $(findKext FakeSMC.kext) $(findKext RealtekRTL8111.kext) $(findKext FakePCIID.kext) $(findKext FakePCIID_Broadcom_WiFi.kext) $(findKext USBInjectAll.kext) $(findKext ACPIBatteryManager.kext) $(findKext $ps2_kext)
+        macos-tools/install_kext.sh -s $kext_dest $(findKext FakeSMC.kext) $(findKext RealtekRTL8111.kext) $(findKext Lilu.kext) $(findKext WhateverGreen.kext) $(findKext AirportBrcmFixup.kext) $(findKext USBInjectAll.kext) $(findKext ACPIBatteryManager.kext) $(findKext $ps2_kext)
     ;;
     --install-hdainjector)
         macos-tools/create_hdainjector.sh -c $hda_codec -r $hda_resources -o $local_kexts_dir
@@ -112,8 +111,11 @@ case "$1" in
 
         macos-tools/install_kext.sh $(findKext $ps2_kext)
     ;;
-    --remove-kexts)
+    --remove-old-kexts)
         # Remove kexts that are not used anymore
+        removeKext FakePCIID.kext
+        removeKext FakePCIID_Intel_HD_Graphics.kext
+        removeKext FakePCIID_Broadcom_WiFi.kext
         removeKext IntelGraphicsFixup.kext
         removeKext ATH9KFixup.kext
         removeKext ATH9KInjector.kext
@@ -141,6 +143,7 @@ case "$1" in
     --install-downloads)
         $0 --install-binaries
         $0 --install-apps
+        $0 --remove-old-kexts
         $0 --install-essential-kexts
         $0 --install-kexts
     ;;
