@@ -46,7 +46,7 @@ DefinitionBlock ("", "SSDT", 2, "hack", "TBK-Z50", 0)
     #include "Downloads/SSDT-XHC.dsl"
     #include "Downloads/SSDT-XCPM.dsl"
     #include "Downloads/SSDT-XOSI.dsl"
-    #include "SSDT-UIAC.dsl"
+    #include "SSDT-UPC.dsl"
     #include "SSDT-CX20751.dsl"
     #include "SSDT-DGPU.dsl"
     #include "SSDT-PS2K.dsl"
