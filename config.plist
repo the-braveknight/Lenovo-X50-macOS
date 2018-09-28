@@ -171,6 +171,14 @@
 					<key>Replace</key>
 					<data>TUFVWAg=</data>
 				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Change Method(UPC,0,N) to XUPC</string>
+					<key>Find</key>
+					<data>X1VQQwA=</data>
+					<key>Replace</key>
+					<data>WFVQQwA=</data>
+				</dict>
 			</array>
 		</dict>
 		<key>SSDT</key>
