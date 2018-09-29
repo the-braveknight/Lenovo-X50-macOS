@@ -9,6 +9,10 @@ It also fetches some of RehabMan's latest hotpatch SSDTs from https://github.com
 - Lenovo G50-70/G40-70 (use make install_g50)
 
 ### Changelog
+2018-09-30
+- Drop ELAN kext support due to author's disregard to APSL
+- Add Mojave 10.14 support
+
 2017-12-16
 - Added support for G50-70 series
 - Added a makefile
