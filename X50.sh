@@ -20,7 +20,7 @@ case "$1" in
     --install-config)
         installConfig $repo_dir/config.plist
     ;;
-    --update-config-y520)
+    --update-config)
         updateConfig $repo_dir/config.plist
     ;;
 esac
