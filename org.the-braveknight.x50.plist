@@ -31,6 +31,7 @@
 			<string>os-x-voodoo-ps2-controller</string>
 			<string>os-x-brcmpatchram</string>
 			<string>os-x-eapd-codec-commander</string>
+			<string>applebacklightfixup</string>
 		</array>
 	</dict>
 	<key>Exceptions</key>
