@@ -48,6 +48,35 @@
 		<string>rtc</string>
 		<string>libaistat</string>
 	</array>
+	<key>Essentials</key>
+	<dict>
+		<key>Kexts</key>
+		<array>
+			<string>VirtualSMC.kext</string>
+			<string>RealtekRTL8111.kext</string>
+			<string>Lilu.kext</string>
+			<string>WhateverGreen.kext</string>
+			<string>AirportBrcmFixup.kext</string>
+			<string>SMCBatteryManager.kext</string>
+			<string>VoodooPS2Controller.kext</string>
+		</array>
+	</dict>
+	<key>Deprecated</key>
+	<dict>
+		<key>Kexts</key>
+		<array>
+			<string>FakeSMC.kext</string>
+			<string>ACPIBatteryManager.kext</string>
+			<string>FakePCIID.kext</string>
+			<string>FakePCIID_Intel_HD_Graphics.kext</string>
+			<string>FakePCIID_Intel_HDMI_Audio.kext</string>
+			<string>FakePCIID_Broadcom_WiFi.kext</string>
+			<string>IntelGraphicsFixup.kext</string>
+			<string>CodecCommander.kext</string>
+			<string>USBInjectAll.kext</string>
+			<string>AppleBacklightInjector.kext</string>
+		</array>
+	</dict>
 	<key>Codec</key>
 	<string>CX20751</string>
 </dict>
