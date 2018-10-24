@@ -9,6 +9,4 @@ if [[ ! -d $macos_tools ]]; then
     rm -Rf $macos_tools && git clone https://github.com/the-braveknight/macos-tools $macos_tools --quiet
 fi
 
-repo_plist=$repo_dir/org.the-braveknight.x50.plist
-
 source $macos_tools/_hack_cmds.sh
