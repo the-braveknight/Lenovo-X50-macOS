@@ -241,40 +241,7 @@
 		<key>KernelPm</key>
 		<true/>
 		<key>KextsToPatch</key>
-		<array>
-			<dict>
-				<key>Comment</key>
-				<string>Conexant CX20751/2 HD Audio</string>
-				<key>Find</key>
-				<data>ixnUEQ==</data>
-				<key>Name</key>
-				<string>com.apple.driver.AppleHDA</string>
-				<key>Replace</key>
-				<data>D1HxFA==</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>Conexant menubar fix (credit wern apfel)</string>
-				<key>Find</key>
-				<data>a3Bzaes=</data>
-				<key>Name</key>
-				<string>com.apple.driver.AppleHDA</string>
-				<key>Replace</key>
-				<data>Y2ltaes=</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>Enable TRIM for non-Apple SSDs</string>
-				<key>Disabled</key>
-				<true/>
-				<key>Find</key>
-				<data>AEFQUExFIFNTRAA=</data>
-				<key>Name</key>
-				<string>com.apple.iokit.IOAHCIBlockStorage</string>
-				<key>Replace</key>
-				<data>AAAAAAAAAAAAAAA=</data>
-			</dict>
-		</array>
+		<array/>
 	</dict>
 	<key>RtVariables</key>
 	<dict>
