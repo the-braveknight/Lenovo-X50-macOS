@@ -183,22 +183,6 @@
 				<key>Author</key>
 				<string>RehabMan</string>
 				<key>Repo</key>
-				<string>applebacklightfixup</string>
-				<key>Installations</key>
-				<dict>
-					<key>Kexts</key>
-					<array>
-						<dict>
-							<key>Name</key>
-							<string>AppleBacklightFixup.kext</string>
-						</dict>
-					</array>
-				</dict>
-			</dict>
-			<dict>
-				<key>Author</key>
-				<string>RehabMan</string>
-				<key>Repo</key>
 				<string>os-x-eapd-codec-commander</string>
 				<key>Installations</key>
 				<dict>
@@ -264,6 +248,7 @@
 		<key>Kexts</key>
 		<array>
 			<string>AppleHDA_CX20751.kext</string>
+			<string>AppleBacklightFixup.kext</string>
 		</array>
 	</dict>
 </dict>
